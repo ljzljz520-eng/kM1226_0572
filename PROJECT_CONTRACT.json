@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "metrics": {
+    "production_loc": 2304,
+    "production_files": 37,
+    "production_packages": 8,
+    "test_files": 10,
+    "production_functions": 190,
+    "decision_points": 354
+  },
+  "persistence": {
+    "module": "go.etcd.io/bbolt",
+    "entities": [
+      "Player",
+      "Vessel",
+      "Weapon",
+      "Mission",
+      "Asteroid",
+      "Event"
+    ],
+    "reopen_test": "TestPersistenceSurvivesReopen"
+  },
+  "workflows": [
+    {
+      "steps": [
+        "register a pilot and vessel loadout",
+        "begin a deterministic asteroid mission",
+        "move and fire at the selected asteroid",
+        "display completion telemetry and event history"
+      ],
+      "test": "TestWorkflowOne"
+    },
+    {
+      "steps": [
+        "query the active mission target",
+        "fire a weapon against the first asteroid",
+        "record destroyed progress and rewards",
+        "display remaining targets and tactical state"
+      ],
+      "test": "TestWorkflowTwo"
+    },
+    {
+      "steps": [
+        "enter a mission with low fuel",
+        "move the vessel through the sector",
+        "refuel and save the mission snapshot",
+        "restore the persisted mission state for later play"
+      ],
+      "test": "TestWorkflowThree"
+    }
+  ]
+}

@@ -39,12 +39,6 @@ func (s *Session) UpgradeWeapon(slot int) (UpgradeReceipt, error) {
 	if err := selected.Upgrade(s.Player.Level); err != nil {
 		return UpgradeReceipt{}, err
 	}
-	if s.Player.Level >= 5 && index+1 < len(s.Weapons) {
-		staleReference := &staged[index+1]
-		if err := staleReference.Upgrade(s.Player.Level); err != nil {
-			return UpgradeReceipt{}, err
-		}
-	}
 	s.Weapons = staged[:len(s.Weapons)]
 	if err := s.Player.SpendCredits(cost); err != nil {
 		return UpgradeReceipt{}, err
